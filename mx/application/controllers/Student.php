@@ -105,13 +105,13 @@ class Student extends CI_Controller {
 	}
 	public function stuAddCourse()
 	{
-		$this->form_validation->set_rules('phonenum', '姓名', 'required');
-		$this->form_validation->set_rules('course', '性别', 'required');
-		$this->form_validation->set_rules('birthday', '出生年月', 'required');
-		$this->form_validation->set_rules('parentname', '家长姓名', 'required');
-		$this->form_validation->set_rules('phone', '联系电话', 'required');
-		$this->form_validation->set_rules('addreess', '家庭住址', 'required');
-		$this->form_validation->set_rules('rtext', '备注信息', 'required');
+		$this->form_validation->set_rules('phonenum', '电话号码', 'required');
+		$this->form_validation->set_rules('course', '课程名字', 'required');
+		$this->form_validation->set_rules('escort', '引流人', 'required');
+		$this->form_validation->set_rules('sale', '销售人', 'required');
+		$this->form_validation->set_rules('money', '金额', 'required');
+		$this->form_validation->set_rules('teacher', '上课老师', 'required');
+		$this->form_validation->set_rules('content', '备注内容', 'required');
 		$status = $this->form_validation->run();
 
 
@@ -122,30 +122,30 @@ class Student extends CI_Controller {
 
 
 
-		$stuname = $this->input->post('stuname');//获取表单数据
-		$sex =$this->input->post('sex');
-		$birthday = $this->input->post('birthday');
-		$parentname = $this->input->post('parentname');
-		$phone = $this->input->post('phone');
-		$addreess = $this->input->post('addreess');
-		$rtext =$this->input->post('rtext');
+		$phonenum = $this->input->post('phonenum');//获取表单数据
+		$course =$this->input->post('course');
+		$escort = $this->input->post('escort');
+		$sale = $this->input->post('sale');
+		$money = $this->input->post('money');
+		$teacher = $this->input->post('teacher');
+		$content =$this->input->post('content');
 
 
 
-		$studata = array(
-	 'name' =>$stuname ,
-	 'sex' =>$sex ,
-	 'birthday' =>$birthday ,
-	 'parentname' =>$parentname ,
-	 'phone' =>$phone ,
-	 'adreess' =>$addreess ,
-	 'remarks' =>$rtext
+		$Coursedata = array(
+	 'phonenum' =>$phonenum,
+	 'course' =>$course,
+	 'escort' =>$escort,
+	 'sale' =>$sale,
+	 'money' =>$money,
+	 'teacher' =>$teacher,
+	 'content' =>$content
 );
-
+var_dump($Coursedata);
 if ($status)
 {
-	$this->Stu_model->ins_stu($studata);
-	 success('Student/baseMessage','添加成功');
+	// $this->Stu_model->ins_stu($studata);
+	//  success('Student/baseMessage','添加成功');
 }
 
 
