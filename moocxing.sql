@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 01 月 03 日 12:32
+-- 生成日期: 2017 年 01 月 23 日 10:15
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.4.45
 
@@ -29,7 +29,35 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `course` (
   `cid` smallint(5) NOT NULL AUTO_INCREMENT,
   `cname` varchar(15) NOT NULL,
-  `money` int(10) NOT NULL,
+  `money` int(6) NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 转存表中的数据 `course`
+--
+
+INSERT INTO `course` (`cid`, `cname`, `money`) VALUES
+(1, '3D打印', 7800),
+(2, '电子积木', 7800),
+(3, '创客实战', 7000),
+(4, '机器人战车', 7000);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `sacourse`
+--
+
+CREATE TABLE IF NOT EXISTS `sacourse` (
+  `cid` int(20) NOT NULL AUTO_INCREMENT,
+  `phonenum` varchar(11) NOT NULL,
+  `course` int(15) NOT NULL,
+  `escort` int(4) NOT NULL,
+  `sale` varchar(4) NOT NULL,
+  `money` int(20) NOT NULL,
+  `teacher` int(4) NOT NULL,
+  `content` text NOT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
