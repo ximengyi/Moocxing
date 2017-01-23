@@ -32,6 +32,12 @@ class Stu_model extends CI_Model{
 
 	 }
 
+	 public function ins_course($data){
+
+		 $this->db->insert('course',$data);
+
+	 }
+
 
 
     }

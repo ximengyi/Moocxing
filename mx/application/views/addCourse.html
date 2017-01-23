@@ -3,22 +3,24 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo base_url() . 'style/' ?>/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="/jscss/admin/design/add" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <form action="<?php echo site_url('student/addCourse') ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
                     <table class="insert-tab" width="100%">
                         <tbody><tr>
                             <th width="120"><i class="require-red">*</i>课程名字：</th>
                             <td>
-                                <input type="text" name="" size="30" class="common-text">
+                                <input type="text" name="cname" size="30" class="common-text">
+                                  <?php echo form_error('cname','<span>','</span>') ?>
                             </td>
                         </tr>
                             <tr>
                                 <th><i class="require-red">*</i>价格：</th>
                                 <td>
-                                    <input class="common-text required" id="title" name="title" size="20" value="" type="text">
+                                    <input class="common-text required" id="title" name="money" size="20" value="" type="text">
+                                      <?php echo form_error('money','<span>','</span>') ?>
                                 </td>
                             </tr>
                             <tr>
@@ -34,4 +36,3 @@
         </div>
 
     </div>
- 

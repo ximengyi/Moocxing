@@ -182,9 +182,21 @@ if ($status)
 	}
 
 	public function addCourse(){
+		$this->form_validation->set_rules('cname', '课程名称', 'required');
+		$this->form_validation->set_rules('money', '课程价格', 'required|numeric');
+		$status = $this->form_validation->run();
 		$this->load->view('header.html');
 		$this->load->view('addCourse.html');
 		$this->load->view('footer.html');
+		$cname = $this->input->post('cname');
+		$money = $this->input->post('money');
+		$cdata = array('cname' =>$cname ,'money'=>$money );
+     if($status){
+
+			 $this->Stu_model->ins_course($cdata);
+		 	 success('Student/baseMessage','添加成功');
+
+		 }
 
 	}
 
