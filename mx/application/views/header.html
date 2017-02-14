@@ -5,6 +5,7 @@
     <title>『慕客信』学员管理系统</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/' ?>css/common.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/' ?>css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/' ?>css/bootstrap.min.css"/>
     <script type="text/javascript" src="<?php echo base_url() . 'style/' ?>js/libs/modernizr.min.js"></script>
     <style type="text/css">
     span {
@@ -24,7 +25,7 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <li><a href="#">管理员</a></li>
+                <li><a href="#"><?php   echo $_SESSION['username'] ?></a></li>
                 <li><a href="#">修改密码</a></li>
                 <li><a href="#">退出</a></li>
             </ul>
@@ -33,10 +34,10 @@
 </div>
 <div class="container clearfix">
     <div class="sidebar-wrap">
-        <div class="sidebar-title">
+        <div>
             <h1>菜单</h1>
         </div>
-        <div class="sidebar-content">
+        <div class="sidebar-content"  style="height:798px;">
             <ul class="sidebar-list">
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>学员管理</a>

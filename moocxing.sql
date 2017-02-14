@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 01 月 23 日 10:15
+-- 生成日期: 2017 �?02 �?12 �?15:24
 -- 服务器版本: 5.5.53
--- PHP 版本: 5.4.45
+-- PHP 版本: 5.6.27
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `course` (
   `cid` smallint(5) NOT NULL AUTO_INCREMENT,
   `cname` varchar(15) NOT NULL,
-  `money` int(6) NOT NULL,
+  `money` int(10) NOT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -51,15 +51,41 @@ INSERT INTO `course` (`cid`, `cname`, `money`) VALUES
 
 CREATE TABLE IF NOT EXISTS `sacourse` (
   `cid` int(20) NOT NULL AUTO_INCREMENT,
-  `phonenum` varchar(11) NOT NULL,
-  `course` int(15) NOT NULL,
-  `escort` int(4) NOT NULL,
+  `stuname` varchar(4) NOT NULL,
+  `course` varchar(15) NOT NULL,
+  `escort` varchar(4) NOT NULL,
   `sale` varchar(4) NOT NULL,
   `money` int(20) NOT NULL,
-  `teacher` int(4) NOT NULL,
+  `teacher` varchar(4) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- 转存表中的数据 `sacourse`
+--
+
+INSERT INTO `sacourse` (`cid`, `stuname`, `course`, `escort`, `sale`, `money`, `teacher`, `content`) VALUES
+(1, '王测试', '3', '0', '孙毅', 24000, '0', '阿斯达'),
+(2, '王小二', '3', '0', '孙毅', 14000, '0', '阿斯蒂芬阿斯蒂芬'),
+(3, '张三', '3', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫'),
+(4, '张三', '0', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫'),
+(5, '张三', '0', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫'),
+(6, '刻录机', '3', '0', '刘尽快', 1851564, '0', '欧阳'),
+(7, '刻录机', '0', '0', '刘尽快', 1851564, '0', '欧阳'),
+(8, '过分的', '0', '0', '脚后跟', 154784, '0', 'iu后'),
+(9, '过分的', '1', '0', '脚后跟', 154784, '0', 'iu后'),
+(10, '过分的', '2', '0', '脚后跟', 154784, '0', 'iu后'),
+(11, '过分的', '3', '0', '脚后跟', 154784, '0', 'iu后'),
+(12, '过分的', '4', '0', '脚后跟', 154784, '0', 'iu后'),
+(13, '过分的', '5', '0', '脚后跟', 154784, '0', 'iu后'),
+(14, '过分的', '6', '0', '脚后跟', 154784, '0', 'iu后'),
+(15, '脚后跟', '3', '0', '脚后跟', 154551, '0', '胶科技园'),
+(16, '脚后跟', '0', '0', '脚后跟', 154551, '0', '胶科技园'),
+(17, '脚后跟', '0', '0', '脚后跟', 154551, '0', '胶科技园'),
+(18, '王小二', '3D打印', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅'),
+(19, '王小二', '电子积木', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅'),
+(20, '王小二', '设计思维', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅');
 
 -- --------------------------------------------------------
 
@@ -76,8 +102,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `phone` int(11) NOT NULL COMMENT '电话',
   `adreess` varchar(30) NOT NULL,
   `remarks` text NOT NULL,
-  PRIMARY KEY (` pid`),
-  UNIQUE KEY ` pid` (` pid`)
+  PRIMARY KEY (` pid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='学生表' AUTO_INCREMENT=5 ;
 
 --

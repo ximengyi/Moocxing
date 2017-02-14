@@ -29,7 +29,7 @@
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="insert.html"><i class="icon-font"></i>新增作品</a>
+                        <a href="insert.html"><i class="icon-font">订单号</i>新增作品</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                         <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
                     </div>
@@ -38,56 +38,39 @@
                     <table class="result-tab" width="100%">
                         <tr>
                             <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
-                            <th>ID</th>
-                            <th>标题</th>
-                            <th>审核状态</th>
-                            <th>点击</th>
-                            <th>发布人</th>
-                            <th>更新时间</th>
-                            <th>评论</th>
+
+                            <th>姓名</th>
+                            <th>课程</th>
+                            <th>引流</th>
+                            <th>销售</th>
+                            <th>金额</th>
+                            <th>上课老师</th>
+                            <th>备注</th>
                             <th>操作</th>
                         </tr>
-                        <tr>
-                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
-                            <td title="发哥经典"><a target="_blank" href="#" title="发哥经典">发哥经典</a> …
-                            </td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>admin</td>
-                            <td>2014-03-15 21:11:01</td>
-                            <td></td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tc"><input name="id[]" value="58" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="58" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>58</td>
-                            <td title="黑色经典"><a target="_blank" href="#" title="黑色经典">黑色经典</a> …
-                            </td>
-                            <td>0</td>
-                            <td>35</td>
-                            <td>admin</td>
-                            <td>2013-12-30 22:34:00</td>
-                            <td></td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
+
+                        <?php foreach ($curMessage as $v): ?>
+                                                <tr>
+                                                    <td> <?php echo $v ['cid'] ?></td>
+                                                    <td>
+                                                         <?php echo $v ['stuname'] ?>
+                                                    </td>
+                                                    <td><a target="_blank" href="#" title=""><?php echo $v ['course'] ?></a></td>
+
+                                                    <td><?php echo $v ['escort'] ?></td>
+                                                    <td><?php echo $v ['sale'] ?></td>
+                                                    <td><?php echo $v ['money'] ?></td>
+                                                    <td><?php echo $v ['teacher'] ?></td>
+                                                         <td><?php echo $v ['content'] ?></td>
+                                                       <td>
+                                                      <a class="link-update" href="#">修改</a>
+                                                        <a class="link-del" href="#">删除</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach ?>
+
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
+                <div class="list-page"><?php echo $links ?></div>
                 </div>
             </form>
         </div>

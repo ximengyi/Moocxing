@@ -98,20 +98,40 @@ class Student extends CI_Controller {
 	}
 	public function newCourse()
 	{
+
+
+
+		$this->load->library('pagination');
+		$perPage =8;
+		$config['base_url'] = site_url('Student/newCourse');
+		$config['total_rows']= $this->db->count_all_results('sacourse');
+		$config['per_page'] = $perPage;
+		$config['uri_segment'] = 3;
+		$config['first_link'] = '第一页';
+		$config['prev_link'] = '上一页';
+		$config['next_link'] = '下一页';
+		$config['last_link'] = '最后一页';
+		$this->pagination->initialize($config);
+		$data['links'] = $this->pagination->create_links();
+		$offset = $this->uri->segment(3);
+		$this->db->limit($perPage,$offset);
+
+		$data['curMessage'] = $this->Stu_model->curecord();
+
 		$this->load->view('header.html');
-		$this->load->view('newCourse.html');
+		$this->load->view('newCourse.html',$data);
 		$this->load->view('footer.html');
 
 	}
 	public function stuAddCourse()
 	{
-		$this->form_validation->set_rules('phonenum', '电话号码', 'required');
-		$this->form_validation->set_rules('course', '课程名字', 'required');
+		$this->form_validation->set_rules('stuname', '姓名', 'required');
+	//	$this->form_validation->set_rules('course', '课程名字', 'required');
 		$this->form_validation->set_rules('escort', '引流人', 'required');
 		$this->form_validation->set_rules('sale', '销售人', 'required');
 		$this->form_validation->set_rules('money', '金额', 'required');
 		$this->form_validation->set_rules('teacher', '上课老师', 'required');
-		$this->form_validation->set_rules('content', '备注内容', 'required');
+	//	$this->form_validation->set_rules('content', '备注内容', 'required');
 		$status = $this->form_validation->run();
 
 
@@ -122,7 +142,7 @@ class Student extends CI_Controller {
 
 
 
-		$phonenum = $this->input->post('phonenum');//获取表单数据
+		$stuname = $this->input->post('stuname');//获取表单数据
 		$course =$this->input->post('course');
 		$escort = $this->input->post('escort');
 		$sale = $this->input->post('sale');
@@ -131,21 +151,41 @@ class Student extends CI_Controller {
 		$content =$this->input->post('content');
 
 
-
 		$Coursedata = array(
-	 'phonenum' =>$phonenum,
-	 'course' =>$course,
+	 'stuname' =>$stuname,
+	 'course'=>'course',
 	 'escort' =>$escort,
 	 'sale' =>$sale,
 	 'money' =>$money,
-	 'teacher' =>$teacher,
+	 'teacher'=>$teacher,
 	 'content' =>$content
 );
-var_dump($Coursedata);
+
+   //var_dump($course);
+
+
+
+
+//var_dump($Coursedata);
 if ($status)
 {
 	// $this->Stu_model->ins_stu($studata);
 	//  success('Student/baseMessage','添加成功');
+
+	if(!empty($course)){
+
+	 foreach ($course as $value) {
+	 //	array_push($Coursedata, 'course'=>$value);
+		 $Coursedata['course']=$value;
+		//	var_dump($Coursedata);
+			//echo "$key";
+    $this->Stu_model->stu_in_cur($Coursedata);
+
+	}
+
+	 	 success('Student/baseMessage','添加成功');
+}
+
 }
 
 
@@ -191,6 +231,7 @@ if ($status)
 		$cname = $this->input->post('cname');
 		$money = $this->input->post('money');
 		$cdata = array('cname' =>$cname ,'money'=>$money );
+
      if($status){
 
 			 $this->Stu_model->ins_course($cdata);
