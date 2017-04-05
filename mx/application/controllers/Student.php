@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Student extends CI_Controller {
 
-	   public function __construct(){
+	 public function __construct(){
 			 parent::__construct();
 			 $this->load->library('pagination');
     	 $this->load->model('Stu_model');
@@ -14,8 +14,9 @@ class Student extends CI_Controller {
 
 	public function index()
 	{
+		$data['num'] = $this->db->count_all_results('student');
 		$this->load->view('header.html');
-		$this->load->view('index.html');
+		$this->load->view('index.html',$data);
 		$this->load->view('footer.html');
 	}
 
@@ -92,15 +93,30 @@ class Student extends CI_Controller {
 
 	public function findStu()
 	{
+
+		$serach = $this->input->post('keywords');
+
+		if(!empty($serach)){
+
+
+    //$data['stuMessage']=$this->Stu_model->serachstu($serach);
+          $data['stuMessage'] = $this->Stu_model->serachstu($serach);
+	     //var_dump($data);
+		//var_dump($data[0]['name']);
+	//	echo $data[0][name];
+		//printf( $data[0]['name']);
 		$this->load->view('header.html');
-		$this->load->view('findStu.html');
+	  $this->load->view('findStu.html',$data);
 		$this->load->view('footer.html');
+		return;
 	}
+	$this->load->view('header.html');
+	$this->load->view('findStu.html');
+	$this->load->view('footer.html');
+		}
+
 	public function newCourse()
 	{
-
-
-
 		$this->load->library('pagination');
 		$perPage =8;
 		$config['base_url'] = site_url('Student/newCourse');

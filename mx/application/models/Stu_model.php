@@ -19,8 +19,7 @@ class Stu_model extends CI_Model{
 		//$data = $this->db->select('record_id,moocid,type,title,grade,name,state,approver,time')->from('record')->order_by('record_id','desc')->get()->result_array();
 	  	//$array = array('moocid'=>$moocid,'state' => '未通过');
 		//	$data = $this->db->where($array)->from('record')->order_by('record_id','desc')->get()->result_array();
-			    $data = $this->db->select()->from('student')->get()->result_array();
-
+		 $data = $this->db->select()->from('student')->get()->result_array();
 				 //	  $query = $this->db->('student');
 		      	return  $data;
 
@@ -56,6 +55,12 @@ class Stu_model extends CI_Model{
 					return  $data;
 
  }
+public function serachstu($serach){
+      $array = array('name'=>$serach);
+			$data = $this->db->where($array)->from('student')->get()->result_array();
+			return $data;
+
+}
 
 
     }
