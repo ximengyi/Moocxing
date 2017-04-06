@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?02 �?12 �?15:24
+-- 生成日期: 2017 年 04 月 06 日 11:52
 -- 服务器版本: 5.5.53
--- PHP 版本: 5.6.27
+-- PHP 版本: 5.4.45
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -46,6 +46,23 @@ INSERT INTO `course` (`cid`, `cname`, `money`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `crecord`
+--
+
+CREATE TABLE IF NOT EXISTS `crecord` (
+  `reid` bigint(100) NOT NULL AUTO_INCREMENT,
+  `stuname` varchar(5) NOT NULL,
+  `tename` varchar(5) NOT NULL,
+  `tecontent` text NOT NULL,
+  `tetime` varchar(15) NOT NULL,
+  `teadress` varchar(100) NOT NULL,
+  `hours` tinyint(10) NOT NULL DEFAULT '2',
+  PRIMARY KEY (`reid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='课程记录表' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `sacourse`
 --
 
@@ -58,6 +75,8 @@ CREATE TABLE IF NOT EXISTS `sacourse` (
   `money` int(20) NOT NULL,
   `teacher` varchar(4) NOT NULL,
   `content` text NOT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '0',
+  `period` int(10) NOT NULL DEFAULT '30' COMMENT '学时',
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
@@ -65,27 +84,29 @@ CREATE TABLE IF NOT EXISTS `sacourse` (
 -- 转存表中的数据 `sacourse`
 --
 
-INSERT INTO `sacourse` (`cid`, `stuname`, `course`, `escort`, `sale`, `money`, `teacher`, `content`) VALUES
-(1, '王测试', '3', '0', '孙毅', 24000, '0', '阿斯达'),
-(2, '王小二', '3', '0', '孙毅', 14000, '0', '阿斯蒂芬阿斯蒂芬'),
-(3, '张三', '3', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫'),
-(4, '张三', '0', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫'),
-(5, '张三', '0', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫'),
-(6, '刻录机', '3', '0', '刘尽快', 1851564, '0', '欧阳'),
-(7, '刻录机', '0', '0', '刘尽快', 1851564, '0', '欧阳'),
-(8, '过分的', '0', '0', '脚后跟', 154784, '0', 'iu后'),
-(9, '过分的', '1', '0', '脚后跟', 154784, '0', 'iu后'),
-(10, '过分的', '2', '0', '脚后跟', 154784, '0', 'iu后'),
-(11, '过分的', '3', '0', '脚后跟', 154784, '0', 'iu后'),
-(12, '过分的', '4', '0', '脚后跟', 154784, '0', 'iu后'),
-(13, '过分的', '5', '0', '脚后跟', 154784, '0', 'iu后'),
-(14, '过分的', '6', '0', '脚后跟', 154784, '0', 'iu后'),
-(15, '脚后跟', '3', '0', '脚后跟', 154551, '0', '胶科技园'),
-(16, '脚后跟', '0', '0', '脚后跟', 154551, '0', '胶科技园'),
-(17, '脚后跟', '0', '0', '脚后跟', 154551, '0', '胶科技园'),
-(18, '王小二', '3D打印', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅'),
-(19, '王小二', '电子积木', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅'),
-(20, '王小二', '设计思维', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅');
+INSERT INTO `sacourse` (`cid`, `stuname`, `course`, `escort`, `sale`, `money`, `teacher`, `content`, `state`, `period`) VALUES
+(1, '王测试', '3', '0', '孙毅', 24000, '0', '阿斯达', 0, 30),
+(2, '王小二', '3', '0', '孙毅', 14000, '0', '阿斯蒂芬阿斯蒂芬', 0, 30),
+(3, '张三', '3', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫', 0, 30),
+(4, '张三', '0', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫', 0, 30),
+(5, '张三', '0', '0', '孙毅', 125890, '0', '阿斯蒂芬啊啊史蒂夫', 0, 30),
+(18, '王小二', '3D打印', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅', 0, 30),
+(19, '王小二', '电子积木', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅', 0, 30),
+(20, '王小二', '设计思维', '黄少辉', '孙毅', 15644781, '阿斯蒂芬', '发生大幅', 0, 30);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `school`
+--
+
+CREATE TABLE IF NOT EXISTS `school` (
+  `cid` int(20) NOT NULL AUTO_INCREMENT,
+  `schname` varchar(20) NOT NULL,
+  `kpeople` varchar(4) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
