@@ -20,13 +20,8 @@ class Student extends CI_Controller {
 		$this->load->view('footer.html');
 	}
 
-
-
-
 	public function insertStu()
 	{
-
-
 		$this->form_validation->set_rules('stuname', '姓名', 'required');
 		$this->form_validation->set_rules('sex', '性别', 'required');
 		$this->form_validation->set_rules('birthday', '出生年月', 'required');
@@ -90,13 +85,19 @@ class Student extends CI_Controller {
 	//
 	//
 	// }
+	public function findStuView(){
+		$this->load->view('header.html');
+	  $this->load->view('findStuView.html');
+		$this->load->view('footer.html');
+	}
 
 	public function findStu()
 	{
 
 		$serach = $this->input->post('keywords');
+		$data['stuMessage'] = $this->Stu_model->serachstu($serach);
 
-		if(!empty($serach)){
+		if(!empty($serach)&&!empty($data['stuMessage'])){
 
 
     //$data['stuMessage']=$this->Stu_model->serachstu($serach);
@@ -108,11 +109,13 @@ class Student extends CI_Controller {
 		$this->load->view('header.html');
 	  $this->load->view('findStu.html',$data);
 		$this->load->view('footer.html');
-		return;
+
+	}else{
+    $this->load->view('header.html');
+    $this->load->view('findStunull.html');
+		$this->load->view('footer.html');
 	}
-	$this->load->view('header.html');
-	$this->load->view('findStu.html');
-	$this->load->view('footer.html');
+
 		}
 
 	public function newCourse()
@@ -256,5 +259,34 @@ if ($status)
 		 }
 
 	}
+
+	  public function addRecord() {
+			// //验证表单
+			// $this->form_validation->set_rules('stuname', '姓名', 'required');
+			// $this->form_validation->set_rules('sex', '性别', 'required');
+			// $this->form_validation->set_rules('birthday', '出生年月', 'required');
+			// $this->form_validation->set_rules('parentname', '家长姓名', 'required');
+			// $this->form_validation->set_rules('phone', '联系电话', 'required');
+			// $this->form_validation->set_rules('addreess', '家庭住址', 'required');
+			// $this->form_validation->set_rules('rtext', '备注信息', 'required');
+			// $status = $this->form_validation->run();
+
+           //载入视图
+
+			$this->load->view('header.html');
+			$this->load->view('addRecord.html');
+			$this->load->view('footer.html');
+
+
+	    //获取表单数据
+			$stuname = $this->input->post('stuname');
+			$course =$this->input->post('course');
+			$escort = $this->input->post('escort');
+			$sale = $this->input->post('sale');
+			$money = $this->input->post('money');
+			$teacher = $this->input->post('teacher');
+			$content =$this->input->post('content');
+
+		}
 
 }

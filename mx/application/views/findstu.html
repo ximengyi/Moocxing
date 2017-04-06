@@ -16,9 +16,9 @@
                                     <option value="">全部</option>
                                     <option value="19">精品界面</option><option value="20">推荐界面</option>
                                 </select> -->
-                                    <h4>输入名字查找学员</h4>
+                                    <h4>输入姓名查找学员</h4>
                             </td>
-                            <th width="70">关键字:</th>
+                            <th></th>
                             <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
                             <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
                         </tr>
@@ -27,41 +27,99 @@
             </div>
         </div>
     <div class="container">
-    	<div class="row clearfix">
+
     		<div class="col-md-12 column">
-    			<h3>
+    			<h3 class="text-center">
     				个人信息
     			</h3>
-    		</div>
     	</div>
     	<div class="row clearfix">
     		<div class="col-md-8 column">
-    			<div class="panel panel-info">
+    			<div class="panel ">
     				<div class="panel-heading">
-    					<h3 class="panel-title">
+
                 <?php foreach ($stuMessage as $item):?>
-                        <h3 class="panel-title">
-                        姓名
-                        </h3>
-                        </div>
-                        <div class="panel-body">
-                          <?php
-                            echo $item['name'];
-                          ?>
 
-                        </div>
-                        <div class="panel-footer">
-                        性别
-                        </div>
-                        <div class="panel-body">
-                          <?php
-                            echo $item['sex'];
-                          ?>
+			<table class="table table-bordered table-hover">
+          <tbody>
+					<tr>
 
-                        </div>
-          					<!-- <?php
-                      echo '<div class="panel-body">'.$item['name'].'</div>';
-                    ?> -->
+						<th class="info">
+							姓名
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['name'];
+              ?>
+						</td>
+					</tr>
+
+
+					<tr>
+						<th class="info">
+							性别
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['sex'];
+              ?>
+
+						</td>
+					</tr>
+					<tr >
+						<th class="info">
+							出生年月
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['birthday'];
+              ?>
+						</td>
+					</tr>
+					<tr>
+						<th  class="info" >
+							家长姓名
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['parentname'];
+              ?>
+						</td>
+					</tr>
+					<tr >
+						<th class="info">
+							联系电话
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['phone'];
+              ?>
+						</td>
+					</tr>
+          <tr >
+						<th class="info">
+							家庭住址
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['adreess'];
+              ?>
+						</td>
+					</tr>
+          <tr >
+						<th class="info">
+							备注
+						</th>
+						<td  class="success">
+              <?php
+                echo $item['remarks'];
+              ?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
 
 
 

@@ -18,11 +18,11 @@
 .crumb-list{padding-left: 12px;}
 .crumb-list .icon-font{margin-right: 5px;}
 .crumb-step{margin: 0 5px;color: #b2c2e0;font-family: serif;}
-.search-wrap{padding: 15px 0;border-bottom: 1px solid #e5e5e5;}
+.search-wrap{padding: 15px 0;border-bottom: 1px solid #e5e5e5;margin-top: 50px;}
 .search-tab tr{line-height: 35px;}
 .search-tab th{text-align: right;padding-right:10px;font-weight: normal;}
 .search-tab td{padding: 0 5px;}
-.common-text{height: 23px;line-height: 23px;padding: 2px 4px;border: 1px solid #ccc;background: #fff;border-radius:5px;}
+.common-text{height: 23px;line-height: 23px;padding: 2px 4px;border: 1px solid #ccc;background: #fff;border-radius:5px;width: 300;}
 .result-wrap{padding:10px 20px;border-bottom: 1px solid #e5e5e5;}
 .result-title{line-height: 35px;padding-bottom: 5px;overflow: hidden;}
 .comment-title{line-height: 35px;margin-bottom: 10px;overflow: hidden;}
@@ -56,3 +56,4 @@
 .res-lab{color: #909090;}
 .res-info{font-size: 15px;}
 .sort-input{width: 25px;text-align: center;}
+.error-message{margin-left: 120px; color: red; margin-top: 20px;}

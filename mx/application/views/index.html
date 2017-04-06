@@ -9,9 +9,9 @@
             </div>
             <div class="result-content">
                 <div class="short-wrap">
-                    <a href="#"><i class="icon-font">&#xe001;</i>新增作品</a>
-                    <a href="#"><i class="icon-font">&#xe005;</i>新增博文</a>
-                    <a href="#"><i class="icon-font">&#xe048;</i>新增作品分类</a>
+                    <a href="<?php echo site_url('student/addRecord') ?>"><i class="icon-font">&#xe001;</i>添加上课记录</a>
+                    <a href="#"><i class="icon-font">&#xe005;</i>本周上课老师</a>
+                    <a href="#"><i class="icon-font">&#xe048;</i>本周上课学员</a>
                     <a href="#"><i class="icon-font">&#xe041;</i>新增博客分类</a>
                     <a href="#"><i class="icon-font">&#xe01e;</i>作品评论</a>
                 </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="result-wrap">
             <div class="result-title">
-                <h1>系统基本信息</h1>
+                <h1>上课基本信息</h1>
             </div>
             <div class="result-content">
                 <ul class="sys-info-list">
@@ -27,10 +27,10 @@
                         <label class="res-lab">学员总数</label><span class="res-info"><?php echo $num;?></span>
                     </li>
                     <li>
-                        <label class="res-lab">学员总销售额</label><span class="res-info">Apache/2.2.21 (Win64) PHP/5.3.10</span>
+                        <label class="res-lab">本周上课人数</label><span class="res-info">Apache/2.2.21 (Win64) PHP/5.3.10</span>
                     </li>
                     <li>
-                        <label class="res-lab">学校总数</label><span class="res-info">apache2handler</span>
+                        <label class="res-lab">本周上课老师人数</label><span class="res-info">apache2handler</span>
                     </li>
                     <li>
                         <label class="res-lab">本年剩余天数</label><span class="res-info">v-0.1</span>
@@ -66,4 +66,4 @@
             </div>
         </div>
     </div>
-    <!--/main--> 
+    <!--/main-->
