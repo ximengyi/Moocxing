@@ -56,6 +56,7 @@ class Student extends CI_Controller {
 
 				if ($status)
 				{
+					echo "string";
           $this->Stu_model->ins_stu($studata);
            success('Student/baseMessage','添加成功');
 				}
@@ -262,14 +263,14 @@ if ($status)
 
 	  public function addRecord() {
 			// //验证表单
-			// $this->form_validation->set_rules('stuname', '姓名', 'required');
-			// $this->form_validation->set_rules('sex', '性别', 'required');
-			// $this->form_validation->set_rules('birthday', '出生年月', 'required');
-			// $this->form_validation->set_rules('parentname', '家长姓名', 'required');
-			// $this->form_validation->set_rules('phone', '联系电话', 'required');
-			// $this->form_validation->set_rules('addreess', '家庭住址', 'required');
-			// $this->form_validation->set_rules('rtext', '备注信息', 'required');
-			// $status = $this->form_validation->run();
+			$this->form_validation->set_rules('stuname', '姓名', 'required');
+			$this->form_validation->set_rules('course', '课程名字', 'required');
+			$this->form_validation->set_rules('teacher', '任课老师', 'required');
+			$this->form_validation->set_rules('content', '课程内容', 'required');
+			$this->form_validation->set_rules('date', '上课时间', 'required');
+			$this->form_validation->set_rules('address', '上课地址', 'required');
+			$this->form_validation->set_rules('time', '上课时长', 'required|integer');
+			$status = $this->form_validation->run();
 
            //载入视图
 
@@ -279,14 +280,34 @@ if ($status)
 
 
 	    //获取表单数据
-			$stuname = $this->input->post('stuname');
 			$course =$this->input->post('course');
-			$escort = $this->input->post('escort');
-			$sale = $this->input->post('sale');
-			$money = $this->input->post('money');
+			$stuname = $this->input->post('stuname');
 			$teacher = $this->input->post('teacher');
 			$content =$this->input->post('content');
 
+			$date = $this->input->post('date');
+			$address = $this->input->post('address');
+			$time = $this->input->post('time');
+
+
+			$record = array(
+		 'course' =>$course ,
+		 'stuname' =>$stuname ,
+		 'tname' =>$teacher ,
+		 'tecontent' =>$content,
+		 'tetime' =>$date,
+		 'teadress' =>$address ,
+		 'hours' =>$time
+ );
+ if($status){
+
+	 $this->Stu_model->ins_crecord($record);
+	 success('Student/baseMessage','添加成功');
+
+ }
+ else{
+	 echo "shibai";
+ }
 		}
 
 }

@@ -7,50 +7,57 @@
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="<?php echo site_url('student/stuAddCourse') ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <form action="<?php echo site_url('student/addRecord') ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
                     <table class="insert-tab" width="100%">
-                        <tbody><tr>
+                        <tbody>
+
+                          <tr>
+                              <th><i class="require-red">*</i>课程名字：</th>
+                              <td>
+                               <label>  <input class="common-text required" id="title" name="course[]" size="50" value="3D打印" type="radio">3D打印</label>&nbsp&nbsp
+                               <label>  <input class="common-text required" id="title" name="course[]" size="50" value="电子积木" type="radio">电子积木</label>
+                               &nbsp&nbsp
+                               <label>  <input class="common-text required" id="title" name="course[]" size="50" value="设计思维" type="radio">设计思维</label>&nbsp&nbsp
+                               <label>  <input class="common-text required" id="title" name="course[]" size="50" value="机器人课程" type="radio">机器人课程</label> &nbsp&nbsp
+                              </td>
+                          </tr>
+
+
+                          <tr>
                             <th width="120"><i class="require-red">*</i>学生姓名：</th>
                             <td>
                                <input class="common-text" type="text" name="stuname" size="30">
                                  <?php echo form_error('stuname','<span>','</span>') ?>
                             </td>
                         </tr>
+                        <tr>
+                          <th><i class="require-red">*</i>任课老师：</th>
+                            <td><input class="common-text" name="teacher" size="30" type="text">
+                             <?php echo form_error('teacher','<span>','</span>') ?></td>
+                        </tr>
+                        <tr>
+                            <th>上课内容：</th>
+                            <td><textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"></textarea>
+                             <?php echo form_error('content','<span>','</span>') ?></td>
+                        </tr>
+                        <tr>
+                          <th><i class="require-red">*</i>上课时间：</th>
+                            <td><input class="common-text" name="date" size="20" value="" type="date">
+                             <?php echo form_error('date','<span>','</span>') ?></td>
+                        </tr>
+
                             <tr>
-                                <th><i class="require-red">*</i>课程名字：</th>
-                                <td>
-                                 <label>  <input class="common-text required" id="title" name="course[]" size="50" value="3D打印" type="checkbox">3D打印</label>&nbsp&nbsp
-                                 <label>  <input class="common-text required" id="title" name="course[]" size="50" value="电子积木" type="checkbox">电子积木</label>
-                                 &nbsp&nbsp
-                                 <label>  <input class="common-text required" id="title" name="course[]" size="50" value="设计思维" type="checkbox">设计思维</label>&nbsp&nbsp
-                                 <label>  <input class="common-text required" id="title" name="course[]" size="50" value="机器人课程" type="checkbox">机器人课程</label> &nbsp&nbsp
-                                </td>
+                                <th><i class="require-red">*</i>上课地点：</th>
+                                <td><input class="common-text" name="address" id="" type="text" size="50">
+                                 <?php echo form_error('address','<span>','</span>') ?></td>
                             </tr>
-                            <tr>
-                              <th><i class="require-red">*</i>引流：</th>
-                                <td><input class="common-text" name="escort" size="30" type="text">
-                                 <?php echo form_error('escort','<span>','</span>') ?></td>
-                            </tr>
-                            <tr>
-                                <th><i class="require-red">*</i>销售：</th>
-                                <td><input class="common-text" name="sale" id="" type="text">
-                                 <?php echo form_error('sale','<span>','</span>') ?></td>
-                            </tr>
-                            <tr>
-                              <th><i class="require-red">*</i>金额：</th>
-                                <td><input class="common-text" name="money" size="20" value="" type="text">
-                                 <?php echo form_error('money','<span>','</span>') ?></td>
-                            </tr>
+
                              <tr>
-                                <th><i class="require-red">*</i>上课老师：</th>
-                                <td><input class="common-text" name="teacher" id="" type="text">
-                                 <?php echo form_error('teacher','<span>','</span>') ?></td>
+                                <th><i class="require-red">*</i>本次课程时长：</th>
+                                <td><input class="common-text" name="time" id="" type="text">
+                                 <?php echo form_error('time','<span>','</span>') ?></td>
                             </tr>
-                            <tr>
-                                <th>备注内容：</th>
-                                <td><textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"></textarea>
-                                 <?php echo form_error('content','<span>','</span>') ?></td>
-                            </tr>
+
                             <tr>
                                 <th></th>
                                 <td>

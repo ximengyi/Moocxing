@@ -61,6 +61,11 @@ public function serachstu($serach){
 			return $data;
 
 }
+public function ins_crecord($data){
+
+	$this->db->insert('crecord',$data);
+
+}
 
 
     }
