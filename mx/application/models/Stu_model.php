@@ -81,5 +81,25 @@ public  function change_period($stuname,$course,$period){
 
 }
 
+//查询课程和剩余课时信息
+
+
+    public function courseMess($stuname){
+
+			$data = $this->db->select('course,period,dperiod')->where('stuname',$stuname)->from('sacourse')->get()->result_array();
+
+
+			return $data;
+
+
+		}
+		public function crecord($stuname){
+
+			$data = $this->db->select()->where('stuname',$stuname)->from('crecord')->get()->result_array();
+
+			return $data;
+
+
+		}
 
     }

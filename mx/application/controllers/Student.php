@@ -102,11 +102,10 @@ class Student extends CI_Controller {
 
 
     //$data['stuMessage']=$this->Stu_model->serachstu($serach);
-          $data['stuMessage'] = $this->Stu_model->serachstu($serach);
-	     //var_dump($data);
-		//var_dump($data[0]['name']);
-	//	echo $data[0][name];
-		//printf( $data[0]['name']);
+    $data['stuMessage'] = $this->Stu_model->serachstu($serach);
+	  $data['courseMess'] = $this->Stu_model->courseMess($serach);
+		$data['crecord'] = $this->Stu_model->crecord($serach);
+
 		$this->load->view('header.html');
 	  $this->load->view('findStu.html',$data);
 		$this->load->view('footer.html');

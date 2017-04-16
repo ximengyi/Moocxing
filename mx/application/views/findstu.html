@@ -120,120 +120,142 @@
 			</table>
 		</div>
 </div>
-
-
-
     					</h3>
     				</div>
 
                    <?php endforeach;?>
     			</div>
     		</div>
-    		<div class="col-md-4 column">
-    			<h3>
-    				h3. 这是一套可视化布局系统.
-    			</h3>
-    			<h3>
-    				h3. 这是一套可视化布局系统.
-    			</h3>
-    		</div>
-    	</div>
     	<div class="row clearfix">
     		<div class="col-md-6 column">
     			<h3 class="text-center">
-    				所报课程
+    				已报课程
     			</h3>
     			<table class="table table-striped">
     				<thead>
-    					<tr>
+    					<tr >
     						<th>
     							编号
     						</th>
     						<th>
-    							产品
+    							课程名字
     						</th>
     						<th>
-    							交付时间
+    							已上课时
     						</th>
     						<th>
-    							状态
+    							剩余课时
     						</th>
     					</tr>
     				</thead>
     				<tbody>
-    					<tr>
-    						<td>
-    							1
-    						</td>
-    						<td>
-    							TB - Monthly
-    						</td>
-    						<td>
-    							01/04/2012
-    						</td>
-    						<td>
-    							Default
-    						</td>
-    					</tr>
-    					<tr class="success">
-    						<td>
-    							1
-    						</td>
-    						<td>
-    							TB - Monthly
-    						</td>
-    						<td>
-    							01/04/2012
-    						</td>
-    						<td>
-    							Approved
-    						</td>
-    					</tr>
-    					<tr class="error">
-    						<td>
-    							2
-    						</td>
-    						<td>
-    							TB - Monthly
-    						</td>
-    						<td>
-    							02/04/2012
-    						</td>
-    						<td>
-    							Declined
-    						</td>
-    					</tr>
+            <?php foreach ($courseMess as $item):?>
     					<tr class="warning">
     						<td>
-    							3
+    		  <?php  static $i =0; $i=$i+1; echo "$i" ?>
     						</td>
     						<td>
-    							TB - Monthly
+                  <?php
+                    echo $item['course'];
+                  ?>
     						</td>
     						<td>
-    							03/04/2012
+                  <?php
+                    echo $item['dperiod']."小时";
+                  ?>
     						</td>
     						<td>
-    							Pending
+                  <?php
+                    echo $item['period']."小时";
+                  ?>
     						</td>
     					</tr>
-    					<tr class="info">
-    						<td>
-    							4
-    						</td>
-    						<td>
-    							TB - Monthly
-    						</td>
-    						<td>
-    							04/04/2012
-    						</td>
-    						<td>
-    							Call in to confirm
-    						</td>
-    					</tr>
+    					   <?php endforeach;?>
     				</tbody>
     			</table>
     		</div>
+
+
+        <div class="col-md-6 column">
+  <h3 class="text-center">
+    课程记录表
+  </h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          编号
+        </th>
+        <th>
+          学生姓名
+        </th>
+        <th>
+          所学课程
+        </th>
+        <th>
+          任课老师
+        </th>
+        <th>
+          课程内容
+        </th>
+        <th>
+          上课时间
+        </th>
+        <th>
+          上课地点
+        </th>
+        <th>
+          上课时长
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($crecord as $item):?>
+      <tr class="success">
+        <td>
+  <?php  static $a =0; $a=$a+1; echo "$a" ?>
+        </td>
+        <td>
+          <?php
+            echo $item['stuname'];
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $item['course'];
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $item['tename'];
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $item['tecontent'];
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $item['tetime'];
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $item['teadress'];
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $item['hours']."小时";
+          ?>
+        </td>
+      </tr>
+
+        <?php endforeach;?>
+    </tbody>
+  </table>
+</div>
     		<div class="col-md-6 column">
     			<h3>
     				备注
