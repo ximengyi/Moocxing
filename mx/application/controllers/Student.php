@@ -207,11 +207,6 @@ if ($status)
 }
 
 }
-
-
-
-
-
 	}
 
 	public function baseMessage(){
@@ -264,7 +259,6 @@ if ($status)
 	  public function addRecord() {
 			// //验证表单
 			$this->form_validation->set_rules('stuname', '姓名', 'required');
-			$this->form_validation->set_rules('course', '课程名字', 'required');
 			$this->form_validation->set_rules('teacher', '任课老师', 'required');
 			$this->form_validation->set_rules('content', '课程内容', 'required');
 			$this->form_validation->set_rules('date', '上课时间', 'required');
@@ -293,21 +287,23 @@ if ($status)
 			$record = array(
 		 'course' =>$course ,
 		 'stuname' =>$stuname ,
-		 'tname' =>$teacher ,
+		 'tename' =>$teacher ,
 		 'tecontent' =>$content,
 		 'tetime' =>$date,
 		 'teadress' =>$address ,
 		 'hours' =>$time
  );
- if($status){
-
+ if($status&&!empty($course)){
 	 $this->Stu_model->ins_crecord($record);
+	 $this->Stu_model->change_period($stuname,$course,$time);
 	 success('Student/baseMessage','添加成功');
 
  }
- else{
-	 echo "shibai";
- }
+
+
 		}
+  public function test(){
+
+	}
 
 }

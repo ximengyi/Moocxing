@@ -67,5 +67,19 @@ public function ins_crecord($data){
 
 }
 
+public  function change_period($stuname,$course,$period){
+	 //查询课时信息
+	  $data=$this->db->select('period,dperiod')->where('stuname',$stuname)->where('course',$course)->from('sacourse')->get()->result_array();
+		//var_dump($data[0]['period']);
+
+   //修改课时信息
+		$aperiod = ((int)$data[0]['period']-$period);
+		$dperiod = ((int)$data[0]['dperiod']+$period);
+		$uparray = array('period' => $aperiod, 'dperiod'=>$dperiod);
+		$this->db->where('stuname', $stuname)->where('course',$course);
+		$this->db->update('sacourse',$uparray);
+
+}
+
 
     }
