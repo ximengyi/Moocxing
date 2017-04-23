@@ -44,7 +44,7 @@ class Stu_model extends CI_Model{
 
  	}
 
-
+//查询课程记录信息
 	public function curecord(){
 	//$data = $this->db->select('record_id,moocid,type,title,grade,name,state,approver,time')->from('record')->order_by('record_id','desc')->get()->result_array();
 		//$array = array('moocid'=>$moocid,'state' => '未通过');
@@ -88,7 +88,6 @@ public  function change_period($stuname,$course,$period){
 
 			$data = $this->db->select('course,period,dperiod')->where('stuname',$stuname)->from('sacourse')->get()->result_array();
 
-
 			return $data;
 
 
@@ -98,8 +97,14 @@ public  function change_period($stuname,$course,$period){
 			$data = $this->db->select()->where('stuname',$stuname)->from('crecord')->get()->result_array();
 
 			return $data;
-
-
 		}
+
+		public function selectstu($stuname){
+
+			$data =$this->db->select()->where('name',$stuname)->from('student')->get()->result_array();
+
+			return  $data;
+
+	     	}
 
     }

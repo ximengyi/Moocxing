@@ -19,8 +19,14 @@ class Student extends CI_Controller {
 		$this->load->view('index.html',$data);
 		$this->load->view('footer.html');
 	}
+public function insertStuView(){
 
-	public function insertStu()
+	$this->load->view('header.html');  //载入视图
+	$this->load->view('insertStu.html');
+	$this->load->view('footer.html');
+
+}
+public function insertStu()
 	{
 		$this->form_validation->set_rules('stuname', '姓名', 'required');
 		$this->form_validation->set_rules('sex', '性别', 'required');
@@ -30,10 +36,6 @@ class Student extends CI_Controller {
 		$this->form_validation->set_rules('addreess', '家庭住址', 'required');
 		$this->form_validation->set_rules('rtext', '备注信息', 'required');
 		$status = $this->form_validation->run();
-
-		$this->load->view('header.html');  //载入视图
-		$this->load->view('insertStu.html');
-		$this->load->view('footer.html');
 
 		$stuname = $this->input->post('stuname');//获取表单数据
 		$sex =$this->input->post('sex');
@@ -56,9 +58,19 @@ class Student extends CI_Controller {
 
 				if ($status)
 				{
-					echo "string";
+					$data = $this->Stu_model->selectstu($stuname);
+					if(!$data){
           $this->Stu_model->ins_stu($studata);
            success('Student/baseMessage','添加成功');
+				 } else {
+					 $datalist['name']=$stuname;
+					 $this->load->view('header.html');  //载入视图
+			 		 $this->load->view('failMessage.html',$datalist);
+			 		 $this->load->view('footer.html');
+
+				 }
+
+
 				}
 
 
@@ -249,7 +261,7 @@ if ($status)
      if($status){
 
 			 $this->Stu_model->ins_course($cdata);
-		 	 success('Student/baseMessage','添加成功');
+		 	 success('Student/newCourse','添加成功');
 
 		 }
 
@@ -301,8 +313,14 @@ if ($status)
 
 
 		}
-  public function test(){
+  public function weekend(){
+		 $data['message'] = $this->Stu_model->curecord();
+
+		$this->load->view('header.html');
+		$this->load->view('weekend.html',$data);
+		$this->load->view('footer.html');
 
 	}
+
 
 }
