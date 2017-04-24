@@ -15,6 +15,8 @@ class Student extends CI_Controller {
 	public function index()
 	{
 		$data['num'] = $this->db->count_all_results('student');
+		date_default_timezone_set('Asia/Shanghai');
+		$data['date'] = date('Y年m月d日 H:i:s');
 		$this->load->view('header.html');
 		$this->load->view('index.html',$data);
 		$this->load->view('footer.html');
