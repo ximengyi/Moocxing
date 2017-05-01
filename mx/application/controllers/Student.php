@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+header('Content-type: text/html; charset=utf8');
 class Student extends CI_Controller {
 
 	 public function __construct(){
@@ -109,26 +110,55 @@ public function insertStu()
 	public function findStu()
 	{
 
+
 		$serach = $this->input->post('keywords');
-		$data['stuMessage'] = $this->Stu_model->serachstu($serach);
-
-		if(!empty($serach)&&!empty($data['stuMessage'])){
 
 
-    //$data['stuMessage']=$this->Stu_model->serachstu($serach);
-    $data['stuMessage'] = $this->Stu_model->serachstu($serach);
-	  $data['courseMess'] = $this->Stu_model->courseMess($serach);
-		$data['crecord'] = $this->Stu_model->crecord($serach);
+ $data['stuMessage'] = $this->Stu_model->serachstu($serach);
 
-		$this->load->view('header.html');
-	  $this->load->view('findStu.html',$data);
-		$this->load->view('footer.html');
+ if(!empty($serach)&&!empty($data['stuMessage'])){
 
-	}else{
-    $this->load->view('header.html');
-    $this->load->view('findStunull.html');
-		$this->load->view('footer.html');
-	}
+
+ //$data['stuMessage']=$this->Stu_model->serachstu($serach);
+ $data['stuMessage'] = $this->Stu_model->serachstu($serach);
+ $data['courseMess'] = $this->Stu_model->courseMess($serach);
+ $data['crecord'] = $this->Stu_model->crecord($serach);
+
+ $this->load->view('header.html');
+ $this->load->view('findStu.html',$data);
+ $this->load->view('footer.html');
+
+}else{
+ $this->load->view('header.html');
+ $this->load->view('findStunull.html');
+ $this->load->view('footer.html');
+}
+
+		}
+
+		public function  findStutable($stuname){
+
+			$serach=urldecode($stuname);
+	$data['stuMessage'] = $this->Stu_model->serachstu($serach);
+
+	if(!empty($serach)&&!empty($data['stuMessage'])){
+
+
+	 //$data['stuMessage']=$this->Stu_model->serachstu($serach);
+	 $data['stuMessage'] = $this->Stu_model->serachstu($serach);
+	$data['courseMess'] = $this->Stu_model->courseMess($serach);
+	$data['crecord'] = $this->Stu_model->crecord($serach);
+
+	$this->load->view('header.html');
+	$this->load->view('findStu.html',$data);
+	$this->load->view('footer.html');
+
+}else{
+	 $this->load->view('header.html');
+	 $this->load->view('findStunull.html');
+	$this->load->view('footer.html');
+}
+
 
 		}
 
@@ -323,6 +353,13 @@ if ($status)
 		$this->load->view('footer.html');
 
 	}
+ public function test($stuname){
+	// $serach = $stuname;
 
+$a=urldecode($stuname);
+$a=mb_convert_encoding($a, 'GB2312', 'UTF-8');
+echo $a;
+
+ }
 
 }
