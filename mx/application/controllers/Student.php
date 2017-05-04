@@ -182,6 +182,7 @@ public function insertStu()
 		$data['curMessage'] = $this->Stu_model->curecord();
 
 		$this->load->view('header.html');
+		$this->load->view('findStuView.html');
 		$this->load->view('newCourse.html',$data);
 		$this->load->view('footer.html');
 
@@ -275,6 +276,7 @@ if ($status)
 				$data['stuMessage'] = $this->Stu_model->sturecord();
 
 				$this->load->view('header.html');
+			  $this->load->view('findStuView.html');
 				$this->load->view('catstu.html',$data);
 				$this->load->view('footer.html');
 	}
