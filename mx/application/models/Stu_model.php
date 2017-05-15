@@ -106,5 +106,25 @@ public  function change_period($stuname,$course,$period){
 			return  $data;
 
 	     	}
+				public function distinctstu() {
+          $data = $this->db->distinct()->select('stuname')->count_all_results('sacourse');
+        // $data['num'] = $this->db->count_all_results('student');
+					return $data;
+					//$data =  $this->db->select()->
+
+				}
+				public function distinctec() {
+					$data = $this->db->distinct()->select('teacher')->count_all_results('sacourse');
+				// $data['num'] = $this->db->count_all_results('student');
+					return $data;
+					//$data =  $this->db->select()->
+				}
+				public function courseIsexist($stuname,$course){
+
+		    $data=$this->db->select()->where('stuname',$stuname)->where('course',$course)->from('sacourse')->get()->result_array();
+
+					return $data;
+
+				}
 
     }

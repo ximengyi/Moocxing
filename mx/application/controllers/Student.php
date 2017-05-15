@@ -16,8 +16,24 @@ class Student extends CI_Controller {
 	public function index()
 	{
 		$data['num'] = $this->db->count_all_results('student');
+		$data['attendstu'] = $this->Stu_model->distinctstu();
+		$data['attendtec'] = $this->Stu_model->distinctec();
 		date_default_timezone_set('Asia/Shanghai');
-		$data['date'] = date('Y年m月d日 H:i:s');
+
+    switch (date('w')) {
+			case 0:$dayStr ='日';break;
+			case 1:$dayStr ='一';break;
+			case 2:$dayStr ='二';break;
+			case 3:$dayStr ='三';break;
+			case 4:$dayStr ='四';break;
+			case 5:$dayStr ='五';break;
+			case 6:$dayStr ='六';break;
+    	default:
+    		$dayStr ='非法日期';
+    		break;
+    }
+   $data['date'] = date('Y年m月d日 H:i:s');
+	 $data['dayStr'] = '星期'.$dayStr;
 		$this->load->view('header.html');
 		$this->load->view('index.html',$data);
 		$this->load->view('footer.html');
@@ -61,6 +77,7 @@ public function insertStu()
 
 				if ($status)
 				{
+					//判断是否已有该学员
 					$data = $this->Stu_model->selectstu($stuname);
 					if(!$data){
           $this->Stu_model->ins_stu($studata);
@@ -197,14 +214,9 @@ public function insertStu()
 		$this->form_validation->set_rules('teacher', '上课老师', 'required');
 	//	$this->form_validation->set_rules('content', '备注内容', 'required');
 		$status = $this->form_validation->run();
-
-
-
 		$this->load->view('header.html');
 		$this->load->view('stuAddCourse.html');
 		$this->load->view('footer.html');
-
-
 
 		$stuname = $this->input->post('stuname');//获取表单数据
 		$course =$this->input->post('course');
@@ -213,7 +225,6 @@ public function insertStu()
 		$money = $this->input->post('money');
 		$teacher = $this->input->post('teacher');
 		$content =$this->input->post('content');
-
 
 		$Coursedata = array(
 	 'stuname' =>$stuname,
@@ -224,33 +235,43 @@ public function insertStu()
 	 'teacher'=>$teacher,
 	 'content' =>$content
 );
-
    //var_dump($course);
-
-
-
-
 //var_dump($Coursedata);
-if ($status)
+$data = $this->Stu_model->selectstu($stuname);
+if ($data&&$status)
 {
 	// $this->Stu_model->ins_stu($studata);
 	//  success('Student/baseMessage','添加成功');
-
 	if(!empty($course)){
-
 	 foreach ($course as $value) {
 	 //	array_push($Coursedata, 'course'=>$value);
 		 $Coursedata['course']=$value;
+		 $data = $this->Stu_model->courseIsexist($stuname,$value);
 		//	var_dump($Coursedata);
 			//echo "$key";
+			if(!$data){
     $this->Stu_model->stu_in_cur($Coursedata);
+		 success('Student/baseMessage','添加成功');
+		    continue;
+	}
+         $failMessage ='该学员已报过该课程，请检查所报课程是否正确';
+		     $this->stuAddCourseFail($failMessage);
 
 	}
 
-	 	 success('Student/baseMessage','添加成功');
-}
 
 }
+
+}else{
+  	// $this->load->view('header.html');
+	  // $this->load->view('addcfailMessage.html');
+    // $this->load->view('footer.html');
+
+		$failMess = '数据库里没有该学员，请先添加该学员，如已有学员请检查名字是否拼写错误已经表单是否填写正确！';
+		$this->stuAddCourseFail($failMess);
+}
+
+
 	}
 
 	public function baseMessage(){
@@ -355,13 +376,27 @@ if ($status)
 		$this->load->view('footer.html');
 
 	}
- public function test($stuname){
+ public function test(){
 	// $serach = $stuname;
-
-$a=urldecode($stuname);
-$a=mb_convert_encoding($a, 'GB2312', 'UTF-8');
-echo $a;
+//  $data = $this->Stu_model->courseIsexist('王小月','设计思维');
+  //var_dump($data);
+// 	die;
+//       $data = $this->Stu_model->distinct();
+// 			var_dump($data);
+// die;
+// $a=urldecode($stuname);
+// $a=mb_convert_encoding($a, 'GB2312', 'UTF-8');
+// echo $a;
 
  }
+
+  public function stuAddCourseFail($failMessage){
+
+		$this->load->view('header.html');
+		$data['failMessage']=$failMessage;
+		$this->load->view('addcfailMessage.html',$data);
+		$this->load->view('footer.html');
+
+	}
 
 }
