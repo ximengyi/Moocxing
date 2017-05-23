@@ -41,7 +41,7 @@
                                                     <td>
                                                     <?php  static $i =0; $i=$i+1; echo "$i" ?>
                                                     </td>
-                                                    <td><a target="_blank" href="#" title=""><?php echo $v ['name'] ?></a></td>
+                                                    <td><a target="_blank" href="<?php echo site_url('student/findStutable/'.$v ['name']) ?>" title=""><?php echo $v ['name'] ?></a></td>
                                                     <td><?php echo $v ['sex'] ?></td>
                                                     <td><?php echo $v ['birthday'] ?></td>
                                                     <td><?php echo $v ['parentname'] ?></td>

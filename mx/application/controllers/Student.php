@@ -253,22 +253,26 @@ if ($data&&$status)
     $this->Stu_model->stu_in_cur($Coursedata);
 		 success('Student/baseMessage','添加成功');
 		    continue;
+	}else{
+        //  $failMessage ='该学员已报过该课程，请检查所报课程是否正确';
+		    //  $this->stuAddCourseFail($failMessage);
+				 success('Student/stuAddCourseFailhasc','添加失败');
+				 die;
+  }
 	}
-         $failMessage ='该学员已报过该课程，请检查所报课程是否正确';
-		     $this->stuAddCourseFail($failMessage);
-
-	}
-
-
-}
-
 }else{
-  	// $this->load->view('header.html');
-	  // $this->load->view('addcfailMessage.html');
-    // $this->load->view('footer.html');
+	  	// $this->load->view('header.html');
+		  // $this->load->view('addcfailMessage.html');
+	    // $this->load->view('footer.html');
+			//
+			// $failMess = '数据库里没有该学员，请先添加该学员，如已有学员请检查名字是否拼写错误已经表单是否填写正确！';
+			// $this->stuAddCourseFail($failMess);
+			 success('Student/stuAddCourseFailNoS','添加失败');
+			 die;
+	}
 
-		$failMess = '数据库里没有该学员，请先添加该学员，如已有学员请检查名字是否拼写错误已经表单是否填写正确！';
-		$this->stuAddCourseFail($failMess);
+
+
 }
 
 
@@ -398,5 +402,20 @@ if ($data&&$status)
 		$this->load->view('footer.html');
 
 	}
+	public function stuAddCourseFailNoS(){
+	  $failMessage="数据库里没有该学员，请先添加该学员，如已有学员请检查名字是否拼写错误已经表单是否填写正确！";
+		$this->load->view('header.html');
+		$data['failMessage']=$failMessage;
+		$this->load->view('addcfailMessage.html',$data);
+		$this->load->view('footer.html');
 
+	}
+	public function stuAddCourseFailhasc(){
+	  $failMessage="该学员已报过该课程不能重复添加";
+		$this->load->view('header.html');
+		$data['failMessage']=$failMessage;
+		$this->load->view('addcfailMessage.html',$data);
+		$this->load->view('footer.html');
+
+	}
 }

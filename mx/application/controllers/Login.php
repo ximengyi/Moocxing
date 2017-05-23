@@ -23,12 +23,17 @@ class Login extends CI_Controller {
 
          $sessiondata = array(
          	'username' =>$userData[0]['username'],
-         	//'mid'      =>$username
+         	'pid'      =>$userData[0]['pid'],
 
          	);
          //原生session
-                     session_start();
+           if(!isset($_SESSION)){
+         session_start();
+      }
+
                     $_SESSION['username'] = $userData[0]['username'];
+
+                     $_SESSION['pid'] =$userData[0]['pid'];
                     //$_SESSION['mid'] = $username;
 
                     // // if ($userData[0]['mooc_ps']==2) {
@@ -39,5 +44,43 @@ class Login extends CI_Controller {
                     success('student/index','登陆成功,正在跳转~');
 
  	}
+  public function change(){
+
+        $this->load->helper('form');
+        $this->load->view('header.html');
+        $this->load->view('change.html');
+        $this->load->view('footer.html');
+
+      }
+  public function change_passwd(){
+      $this->load->model('Admin_model','admin');
+
+      $username = $_SESSION['username'];
+      $userData = $this->admin->check($username);
+
+      $passwd = $this->input->post('passwd');
+      if ($passwd !=$userData[0]['userpw']) {
+        error('原始密码错误');
+      }
+
+
+       $passwdf = $this->input->post('passwdf');
+       $passwds = $this->input->post('passwds');
+       if ($passwdf !=$passwds){
+        error('两次密码不相同');
+       }
+
+
+    //   $moocid = $_SESSION['mid'];
+       $data = array(
+         'userpw' =>$passwdf
+
+        );
+
+       $pid =  $_SESSION['pid'];
+      $this->admin->change($pid,$data);
+     success('Login/index','修改成功');
+
+    }
 
 }
