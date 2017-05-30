@@ -86,7 +86,8 @@ public  function change_period($stuname,$course,$period){
 
     public function courseMess($stuname){
 
-			$data = $this->db->select('course,period,dperiod')->where('stuname',$stuname)->from('sacourse')->get()->result_array();
+			//$data = $this->db->select('course,period,dperiod,money')->where('stuname',$stuname)->from('sacourse')->get()->result_array();
+      $data = $this->db->select()->where('stuname',$stuname)->from('sacourse')->get()->result_array();
 
 			return $data;
 

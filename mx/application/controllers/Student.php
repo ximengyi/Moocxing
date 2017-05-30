@@ -214,10 +214,10 @@ public function insertStu()
 		$this->form_validation->set_rules('teacher', '上课老师', 'required');
 	//	$this->form_validation->set_rules('content', '备注内容', 'required');
 		$status = $this->form_validation->run();
-		$this->load->view('header.html');
-		$this->load->view('stuAddCourse.html');
-		$this->load->view('footer.html');
-
+		// $this->load->view('header.html');
+		// $this->load->view('stuAddCourse.html');
+		// $this->load->view('footer.html');
+    $this->stuAddCourseView();
 		$stuname = $this->input->post('stuname');//获取表单数据
 		$course =$this->input->post('course');
 		$escort = $this->input->post('escort');
@@ -338,9 +338,11 @@ if ($data&&$status)
 
            //载入视图
 
-			$this->load->view('header.html');
-			$this->load->view('addRecord.html');
-			$this->load->view('footer.html');
+			// $this->load->view('header.html');
+			// $this->load->view('addRecord.html');
+			// $this->load->view('footer.html');
+
+			$this->addRecordView();
 
 
 	    //获取表单数据
@@ -415,6 +417,24 @@ if ($data&&$status)
 		$this->load->view('header.html');
 		$data['failMessage']=$failMessage;
 		$this->load->view('addcfailMessage.html',$data);
+		$this->load->view('footer.html');
+
+	}
+	public function stuAddCourseView()
+	{
+		 $this->load->model('Cour_model');
+    $data['course'] =  $this->Cour_model->cat_Course();
+		$this->load->view('header.html');
+		$this->load->view('stuAddCourse.html',$data);
+		$this->load->view('footer.html');
+
+	}
+	public function addRecordView()
+	{
+		$this->load->model('Cour_model');
+    $data['course'] =  $this->Cour_model->cat_Course();
+		$this->load->view('header.html');
+		$this->load->view('addRecord.html',$data);
 		$this->load->view('footer.html');
 
 	}

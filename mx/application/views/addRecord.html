@@ -3,7 +3,7 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo site_url('student/index') ?>">首页</a><span class="crumb-step">&gt;</span><span>添加课程记录</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
@@ -14,11 +14,14 @@
                           <tr>
                               <th><i class="require-red">*</i>课程名字：</th>
                               <td>
-                               <label>  <input class="common-text required" id="title" name="course" size="50" value="3D打印" type="radio">3D打印</label>&nbsp&nbsp
-                               <label>  <input class="common-text required" id="title" name="course" size="50" value="电子积木" type="radio">电子积木</label>
-                               &nbsp&nbsp
-                               <label>  <input class="common-text required" id="title" name="course" size="50" value="设计思维" type="radio">设计思维</label>&nbsp&nbsp
-                               <label>  <input class="common-text required" id="title" name="course" size="50" value="机器人课程" type="radio">机器人课程</label> &nbsp&nbsp
+                               <table border="0">
+           <tr>
+                 <?php foreach ($course as $v): ?>
+                 <td>  <label>  <input class="common-text required" id="title" name="course[]" size="10" value="<?php echo $v ['cname'] ?>" type="radio"><?php echo $v ['cname'] ?></label>&nbsp&nbsp</td>
+
+                                    <?php endforeach ?>
+                          </tr>
+                      </table>
                               </td>
                           </tr>
 

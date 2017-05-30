@@ -3,7 +3,7 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo site_url('student/index') ?>">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">查找学员</span></div>
         </div>
         <div class="search-wrap">
             <div class="search-content">
@@ -148,6 +148,18 @@
     						<th>
     							剩余课时
     						</th>
+                <th>
+    							主课老师
+    						</th>
+                 <th>
+                引流
+                </th>
+                <th>
+                  销售
+               </th>
+               <th>
+             已消费金额
+              </th>
     					</tr>
     				</thead>
     				<tbody>
@@ -171,6 +183,26 @@
                     echo $item['period']."小时";
                   ?>
     						</td>
+                <td>
+                  <?php
+                    echo $item['teacher'];
+                  ?>
+                </td>
+                <td>
+                  <?php
+                    echo $item['escort'];
+                  ?>
+                </td>
+                <td>
+                  <?php
+                    echo $item['sale'];
+                  ?>
+                </td>
+                <td>
+                  <?php
+                    echo $item['money']."元";
+                  ?>
+                </td>
     					</tr>
     					   <?php endforeach;?>
     				</tbody>
