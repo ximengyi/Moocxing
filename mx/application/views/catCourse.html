@@ -1,0 +1,25 @@
+<div class="main-wrap">
+   <h3 class="center_block">课程列表</h3>
+	<hr>
+	<table class="table table-bordered"  style="">
+		<tr>
+			<th>序号</th>
+			<th>课程名称</th>
+			<th>价格</th>
+			<th>操作</th>
+
+		</tr>
+		<?php foreach ($course as $v): ?>
+		<tr>
+
+			<td> <?php echo $v ['cid'] ?></td>
+				<td> <?php echo $v ['cname'] ?></td>
+					<td> <?php echo $v ['money'] ?></td>
+				<td><a class="link-update" href="<?php echo site_url('course/delCourse/'.$v ['cid']) ?>">删除</a></td>
+
+		</tr>
+<?php endforeach ?>
+
+
+	</table>
+</div>

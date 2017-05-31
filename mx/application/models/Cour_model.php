@@ -15,5 +15,10 @@ class Cour_model extends CI_Model{
 		return  $data;
 
 		}
+		public function del_Course($cid){
+
+    			$data =  $this->db->delete('course', array('cid' => $cid));
+ 					return $data;
+		}
 
     }

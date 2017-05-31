@@ -35,6 +35,7 @@ class Student extends CI_Controller {
    $data['date'] = date('Y年m月d日 H:i:s');
 	 $data['dayStr'] = '星期'.$dayStr;
 		$this->load->view('header.html');
+			$this->load->view('quickly.html');
 		$this->load->view('index.html',$data);
 		$this->load->view('footer.html');
 	}
@@ -311,6 +312,7 @@ if ($data&&$status)
 		$this->form_validation->set_rules('money', '课程价格', 'required|numeric');
 		$status = $this->form_validation->run();
 		$this->load->view('header.html');
+		$this->load->view('quickly.html');
 		$this->load->view('addCourse.html');
 		$this->load->view('footer.html');
 		$cname = $this->input->post('cname');
@@ -320,7 +322,7 @@ if ($data&&$status)
      if($status){
 
 			 $this->Stu_model->ins_course($cdata);
-		 	 success('Student/newCourse','添加成功');
+		 	 success('Course/catCourse','添加成功');
 
 		 }
 
