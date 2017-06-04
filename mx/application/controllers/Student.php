@@ -198,7 +198,6 @@ public function insertStu()
 		$this->db->limit($perPage,$offset);
 
 		$data['curMessage'] = $this->Stu_model->curecord();
-
 		$this->load->view('header.html');
 		$this->load->view('findStuView.html');
 		$this->load->view('newCourse.html',$data);
@@ -416,8 +415,8 @@ if ($data&&$status)
 	}
 	public function stuAddCourseFailhasc(){
 	  $failMessage="该学员已报过该课程不能重复添加";
+			$data['failMessage']=$failMessage;
 		$this->load->view('header.html');
-		$data['failMessage']=$failMessage;
 		$this->load->view('addcfailMessage.html',$data);
 		$this->load->view('footer.html');
 

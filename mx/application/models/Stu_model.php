@@ -105,8 +105,8 @@ public  function change_period($stuname,$course,$period){
 			$data =$this->db->select()->where('name',$stuname)->from('student')->get()->result_array();
 
 			return  $data;
-
 	     	}
+				
 				public function distinctstu() {
           $data = $this->db->distinct()->select('stuname')->count_all_results('sacourse');
         // $data['num'] = $this->db->count_all_results('student');
