@@ -1,0 +1,53 @@
+
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo site_url('student/index') ?>">首页</a><span class="crumb-step">&gt;</span></span><span>新增业务</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="<?php echo site_url('school/doupdatesch') ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <input type="text" name="cid" value="<?php echo $schmess[0]['cid']; ?>"  style="display:none;"/>
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+
+                          <tr>
+                              <th ><i class="require-red">*</i>学校/组织机构：</th>
+                              <td>
+                                <input class="common-text required"  type="text" name="schname" value="<?php echo $schmess[0]['schname']; ?>" size="50">
+                              </td>
+                          </tr>
+                          <tr>
+                            <th><i class="require-red">*</i>联系人：</th>
+                            <td>
+                              <input class="common-text required" type="text" name="contact" value="<?php echo $schmess[0]['kpeople']; ?>" size="50">
+                            </td>
+                        </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>联系电话：</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="phone" size="50" value="<?php echo $schmess[0]['phone']; ?>" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>组织机构地址：</th>
+                                <td><input class="common-text" name="addreess" size="50" value="<?php echo $schmess[0]['adreess']; ?>" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>备注：</th>
+                                <td><textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"  ><?php echo $schmess[0]['content']; ?></textarea></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>

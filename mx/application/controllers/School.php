@@ -215,6 +215,47 @@ class School extends CI_Controller {
 	}
 }
 
+	public function updatesch($cid)
+	{
+		$data['schmess']=$this->Sch_model->selectschcid($cid);
+		$this->load->view('header.html');
+		$this->load->view('updateSchool.html',$data);
+   	$this->load->view('footer.html');
+	}
+	public function doupdatesch()
+	{
+		$this->form_validation->set_rules('schname', '学校/组织机构', 'required');
+		$this->form_validation->set_rules('contact', '联系人', 'required');
+		$this->form_validation->set_rules('phone', '联系电话', 'required|is_natural');
+		$this->form_validation->set_rules('addreess', '组织机构地址', 'required');
+		$status = $this->form_validation->run();
 
+		$schname = $this->input->post('schname');//获取表单数据
+		$contact =$this->input->post('contact');
+		$phone = $this->input->post('phone');
+		$addreess = $this->input->post('addreess');
+		$content = $this->input->post('content');
+
+       $schdata = array(
+      'schname' =>$schname ,
+			'kpeople' =>$contact ,
+			'phone' =>$phone,
+			'adreess' =>$addreess ,
+			'content' =>$content ,
+
+	);
+	if ($status)
+	{
+
+		    $this->Sch_model->updatesch($schdata,$schname);
+		 success('School/catschool','修改成功');
+	}else {
+		 $datalist['failMessage']="-----更新数据失败-----";
+		 $this->load->view('header.html');  //载入视图
+		 $this->load->view('addcfailMessage.html',$datalist);
+		 $this->load->view('footer.html');
+
+	 }
+	}
 
 }

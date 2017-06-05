@@ -15,7 +15,8 @@ class Student extends CI_Controller {
 
 	public function index()
 	{
-		$data['num'] = $this->db->count_all_results('student');
+		$data['stunum'] = $this->db->count_all_results('student');
+		$data['schnum'] = $this->db->count_all_results('school');
 		$data['attendstu'] = $this->Stu_model->distinctstu();
 		$data['attendtec'] = $this->Stu_model->distinctec();
 		date_default_timezone_set('Asia/Shanghai');
@@ -251,7 +252,7 @@ if ($data&&$status)
 			//echo "$key";
 			if(!$data){
     $this->Stu_model->stu_in_cur($Coursedata);
-		 success('Student/baseMessage','添加成功');
+		 success('Student/newCourse','添加成功');
 		    continue;
 	}else{
         //  $failMessage ='该学员已报过该课程，请检查所报课程是否正确';
@@ -366,11 +367,24 @@ if ($data&&$status)
 		 'teadress' =>$address ,
 		 'hours' =>$time
  );
- if($status&&!empty($course)){
-	 $this->Stu_model->ins_crecord($record);
-	 $this->Stu_model->change_period($stuname,$course,$time);
-	 success('Student/baseMessage','添加成功');
 
+   if($status&&!empty($course)){
+	 $data = $this->Stu_model->selectstu($stuname);
+	 //并未验证是否先报了课程，因为可能会先上课后交钱
+	// $data2 = $this->Stu_model->selectstu($stuname);
+	 if ($data) {
+		 $this->Stu_model->ins_crecord($record);
+		 $this->Stu_model->change_period($stuname,$course,$time);
+		 success('Student/weekend','添加成功');
+
+	 }else{
+		  $datalist['failMessage']="-----数据库里不存在该学员，请检查名字是否拼写错误-----";
+		  $this->load->view('header.html');  //载入视图
+		  $this->load->view('findSchoolView.html');
+		  $this->load->view('addcfailMessage.html',$datalist);
+		  $this->load->view('footer.html');
+
+}
  }
 
 
@@ -437,6 +451,15 @@ if ($data&&$status)
 		$this->load->view('header.html');
 		$this->load->view('addRecord.html',$data);
 		$this->load->view('footer.html');
+
+	}
+
+	public function updatestu(){
+
+
+	}
+	public function updatescourse(){
+
 
 	}
 }

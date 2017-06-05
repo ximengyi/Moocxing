@@ -30,8 +30,7 @@
                     <td><?php echo $v ['adreess'] ?></td>
                     <td><?php echo $v ['content'] ?></td>
                        <td>
-                      <a class="link-update" href="#">修改</a>
-                        <a class="link-del" href="#">删除</a>
+                      <a class="link-update" href="<?php echo site_url('school/updatesch/'.$v ['cid']) ?>">修改</a>
                     </td>
                 </tr>
             <?php endforeach ?>

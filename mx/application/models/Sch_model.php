@@ -33,11 +33,23 @@ class Sch_model extends CI_Model{
 			return  $data;
 
 	     	}
+				public function selectschcid($cid){
+
+					$data =$this->db->select()->where('cid',$cid)->from('school')->get()->result_array();
+
+					return  $data;
+
+						}
 		 public function serachsch($serach){
 				      $array = array('schname'=>$serach);
 							$data = $this->db->where($array)->from('school')->get()->result_array();
 							return $data;
 
 				}
+
+    public function updatesch($schdata,$schname){
+			$this->db->update('school', $schdata, array('schname' => $schname));
+
+	 }
 
     }
