@@ -1,0 +1,68 @@
+
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo site_url('student/index') ?>">首页</a><span class="crumb-step">&gt;</span></span><span>添加学员</span></div>
+
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="<?php echo site_url('student/doupdatestu') ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                <th><i class="require-red">*</i>姓名：</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="stuname" size="30" value="<?php echo $stumess[0]['name']; ?>" type="text">
+
+                                </td>
+                            </tr>
+                            <tr>
+                            <th width="120"><i class="require-red">*</i>性别：</th>
+                            <td>
+                                 <input type ="radio"  value ="男" name ="sex" <?php if($stumess[0]['sex']=='男'){echo 'checked=checked'; }?>/>男
+                                 &nbsp  &nbsp
+                                 <input type ="radio"  value ="女" name ="sex"<?php if($stumess[0]['sex']=='女'){echo 'checked=checked'; }?>/>女
+
+                            </td>
+                        </tr>
+                            <tr>
+                               <th><i class="require-red">*</i>出生年月：</th>
+                                <td><input class="common-text" name="birthday" size="50" type="date" value="<?php echo $stumess[0]['birthday']; ?>">
+
+                                </td>
+                            </tr>
+                             <tr>
+                                <th><i class="require-red">*</i>家长姓名：</th>
+                                <td><input class="common-text" name="parentname" size="25" value="<?php echo $stumess[0]['parentname']; ?>" type="text">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>联系电话：</th>
+                                <td><input class="common-text" name="phone" size="25" value="<?php echo $stumess[0]['phone']; ?>" type="text">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>家庭住址：</th>
+                                <td><input class="common-text" name="addreess" size="80" id="" type="text" value="<?php echo $stumess[0]['adreess']; ?>">
+                                  <?php echo form_error('addreess','<span>','</span>') ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>备注内容：</th>
+                                <td><textarea name="rtext" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"><?php echo $stumess[0]['remarks']; ?></textarea></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>

@@ -61,6 +61,13 @@ public function serachstu($serach){
 			return $data;
 
 }
+public function serachstupid($pid){
+      $array = array('pid'=>$pid);
+			$data = $this->db->where($array)->from('student')->get()->result_array();
+			return $data;
+
+}
+
 public function ins_crecord($data){
 
 	$this->db->insert('crecord',$data);
@@ -106,7 +113,7 @@ public  function change_period($stuname,$course,$period){
 
 			return  $data;
 	     	}
-				
+
 				public function distinctstu() {
           $data = $this->db->distinct()->select('stuname')->count_all_results('sacourse');
         // $data['num'] = $this->db->count_all_results('student');
@@ -127,5 +134,8 @@ public  function change_period($stuname,$course,$period){
 					return $data;
 
 				}
+		public function updatestu($studata,$stuname){
+			$this->db->update('student', $studata, array('name' => $stuname));
+		}
 
     }

@@ -300,7 +300,7 @@ if ($data&&$status)
 				$this->db->limit($perPage,$offset);
 
 				$data['stuMessage'] = $this->Stu_model->sturecord();
-
+        // var_dump($data); die;
 				$this->load->view('header.html');
 			  $this->load->view('findStuView.html');
 				$this->load->view('catstu.html',$data);
@@ -454,9 +454,55 @@ if ($data&&$status)
 
 	}
 
-	public function updatestu(){
+	public function updatestu($name){
+
+		$serach=urldecode($name);
+		$data['stumess']=$this->Stu_model->serachstu($serach);
+		$this->load->view('header.html');
+		$this->load->view('updatestu.html',$data);
+		$this->load->view('footer.html');
+
+	}
+	public function doupdatestu()
+	{
+		$this->form_validation->set_rules('stuname', '学生姓名', 'required');
+		$this->form_validation->set_rules('parentname', '父母姓名', 'required');
+		$this->form_validation->set_rules('phone', '联系电话', 'required|is_natural');
+		$this->form_validation->set_rules('addreess', '家庭地址', 'required');
+		$status = $this->form_validation->run();
+
+		$stuname = $this->input->post('stuname');//获取表单数据
+		$sex =$this->input->post('sex');
+		$birthday = $this->input->post('birthday');
+		$parentname = $this->input->post('parentname');
+		$phone = $this->input->post('phone');
+		$addreess = $this->input->post('addreess');
+		$content = $this->input->post('rtext');
+
+       $studata = array(
+      'name' =>$stuname ,
+			'sex' =>$sex ,
+			'birthday' =>$birthday ,
+			'parentname' =>$parentname,
+			'phone' =>$phone,
+			'adreess' =>$addreess ,
+			'remarks' =>$content ,
+
+	);
+	if ($status)
+	{
+
+		   $data = $this->Stu_model->updatestu($studata,$stuname);
+			 	 success('Student/baseMessage','修改成功');
 
 
+	}else {
+		 $datalist['failMessage']="-----更新数据失败,请检查所有表单选项是否已填写-----";
+		 $this->load->view('header.html');  //载入视图
+		 $this->load->view('addcfailMessage.html',$datalist);
+		 $this->load->view('footer.html');
+
+	 }
 	}
 	public function updatescourse(){
 
